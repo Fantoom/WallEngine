@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WallEngine", "WallEngine\WallEngine.csproj", "{2AD9D953-F477-4A93-B5E5-D089D615CE55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallpainter", "WallEngine\Wallpainter\Wallpainter.csproj", "{3AC20D0C-35C7-4104-8091-896C182FBA16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AD9D953-F477-4A93-B5E5-D089D615CE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD9D953-F477-4A93-B5E5-D089D615CE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD9D953-F477-4A93-B5E5-D089D615CE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD9D953-F477-4A93-B5E5-D089D615CE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC20D0C-35C7-4104-8091-896C182FBA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC20D0C-35C7-4104-8091-896C182FBA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC20D0C-35C7-4104-8091-896C182FBA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC20D0C-35C7-4104-8091-896C182FBA16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3975E127-A46B-4DDE-B8B1-60B2086272D1}
+	EndGlobalSection
+EndGlobal

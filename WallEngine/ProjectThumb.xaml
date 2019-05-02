@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="WallEngine.ProjectThumb"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WallEngine"
+             mc:Ignorable="d" 
+             d:DesignHeight="140" d:DesignWidth="140">
+
+    <!--<UserControl.Style>
+        <Style TargetType="UserControl">
+            <Setter TargetName="rect" Property="Fill" Value="#66000000" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="rect" Property="Fill" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>-->
+
+
+
+    <Grid MouseLeave="Grid_MouseLeave" MouseEnter="Grid_MouseEnter">
+        <!--<Grid.Effect>
+            <DropShadowEffect Color="#FF73FBFB" BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+        </Grid.Effect>-->
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <!--<Setter Property="Effect" Value="{x:Null}"/>-->
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="#FF838383" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="#FF5DD0FB" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
+        <Image Name="PreviewImage" Source="Images/preview_local.jpg">
+            <!--<image.source>
+                <bitmapimage decodepixelwidth="400" urisource="{binding path=bmap}" /> -->
+            <!--urisource="images/preview_local.jpg"-->
+            <!--
+            </image.source>-->
+        </Image>
+
+        <Rectangle  Name="rect" Margin="0,90,0,0" Opacity="0.4" Fill="Black" >
+            <!--Fill="#66000000"-->
+
+            <!--<Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#66000000" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>-->
+        </Rectangle>
+        <Label FontSize="14" Content="{Binding Path=Title , FallbackValue='Project Title'}" Margin="0,90,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Foreground="White"/>
+
+    </Grid>
+</UserControl>
