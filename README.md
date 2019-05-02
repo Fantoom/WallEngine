@@ -28,7 +28,7 @@ Small optimization problem
 ## Built With
 
 * [MaterialDesignThemes](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit) - UI design
-* [Wallpainter](https://github.com/Foohy/Wallpainter) - to set window behind icons
+* [Wallpainter](https://github.com/Foohy/Wallpainter) - For placing window behind icons
 * [Mpv.NET](https://github.com/hudec117/Mpv.NET) - Video player
 * [Mpvlib](https://mpv.srsfckn.biz)(Dev build) - Dll library for Mpv.NET
 
