@@ -6,8 +6,7 @@ An Engine for Creating and Setting Animated wallpapers
 
 
 ## See it in action
-####**Video**
-https://streamable.com/e7sxh
+#### Video https://streamable.com/e7sxh
 ![](preview.gif)
 
 ## Download
