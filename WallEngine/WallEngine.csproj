@@ -112,6 +112,9 @@
     <Compile Include="ProjectThumb.xaml.cs">
       <DependentUpon>ProjectThumb.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Viewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +154,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProjectThumb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +208,15 @@
     <Resource Include="bin\Debug\Assets\preview_local.jpg" />
     <Resource Include="bin\Debug\Assets\icon.ico" />
     <Resource Include="Images\icon.png" />
+    <Content Include="Assets\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\preview_local.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="lib\mpv-1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

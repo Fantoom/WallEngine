@@ -41,7 +41,7 @@ namespace WallEngine
 			//Kills if already running
 			if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
 			{
-				System.Windows.MessageBox.Show("Already exist", "Already exist", MessageBoxButton.OK);
+				System.Windows.MessageBox.Show("Already Running", "Already Running", MessageBoxButton.OK);
 				System.Diagnostics.Process.GetCurrentProcess().Kill();
 			}
 			InitializeComponent();
