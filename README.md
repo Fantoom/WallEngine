@@ -24,7 +24,7 @@ Just press "Create Project" button , select video or url , write Title, and sele
 ## Contributing
 
 Contributions are always welcome!
-Please read the contribution guidelines first.
+Please read the [Contribution guidelines](https://github.com/Fantoom/WallEngine/blob/master/Contributing.md) first.
 
 ## License
 
