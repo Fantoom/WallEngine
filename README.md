@@ -24,7 +24,6 @@ Just press "Create new Project" button , select video or url , write Title, and 
 
 ## Known Issues
 Small optimization problem
-Project delete button not working
 
 ## Built With
 
