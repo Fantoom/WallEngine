@@ -88,13 +88,13 @@ namespace WPEngine.WPEngineClasses
 		}
 		public void DeleteProject(Project project)
 		{
-			File.Delete(Path.Combine(project.GetPath(), "project.json"));
+
 			Projects.Remove(project);
+			File.Delete(Path.Combine(project.GetPath(), "project.json"));
 			Controller.getInstance().UpdateView();
 			if (Directory.Exists(project.GetPath()))
 			{
-				//Directory.Delete(project.GetPath(), true);
-				File.Delete(Path.Combine(project.GetPath(), project.title));
+				Directory.Delete(project.GetPath(), true);
 			}
 			
 		}

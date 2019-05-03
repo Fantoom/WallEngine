@@ -17,9 +17,9 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         >
-    <Window.Effect>
+    <!--<Window.Effect>
         <DropShadowEffect Color="#FF0097FF" BlurRadius="30" Direction="-90" RenderingBias="Quality" ShadowDepth="4"/>
-    </Window.Effect>
+    </Window.Effect>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*" ></RowDefinition>

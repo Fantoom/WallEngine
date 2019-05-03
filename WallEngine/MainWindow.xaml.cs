@@ -96,7 +96,7 @@ namespace WallEngine
 			}
 			if (projects.Count() < 1)
 			{
-				ResetPreview();
+				Reset();
 			}
 		}
 
@@ -126,6 +126,11 @@ namespace WallEngine
 			controller.Play(project);
 			Project_Preview.Source = ProjectThumb.CreateBitmapFromImage(Path.Combine(project.GetPath(), project.preview));
 			Project_Title.Content = project.title;
+		}
+		private void Reset()
+		{
+			controller.ResetPlayer();
+			ResetPreview();
 		}
 		private void ResetPreview()
 		{

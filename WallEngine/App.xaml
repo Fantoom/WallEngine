@@ -11,13 +11,13 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Indigo.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Border">
+            <!--<Style TargetType="Border">
                 <Setter Property="Effect" >
                     <Setter.Value>
                         <DropShadowEffect Color="#FF0097FF" BlurRadius="30" Direction="-90" RenderingBias="Quality" ShadowDepth="4"/>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

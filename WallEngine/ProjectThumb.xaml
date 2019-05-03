@@ -29,7 +29,7 @@
                 <!--<Setter Property="Effect" Value="{x:Null}"/>-->
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Color="#FF838383" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+                        <DropShadowEffect Color="#FF838383" BlurRadius="25" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
                     </Setter.Value>
                 </Setter>
                 <Style.Triggers>

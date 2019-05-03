@@ -59,14 +59,21 @@ namespace WallEngine
 		}
 		private BitmapImage CreateBitmap(string value)
 		{
-			Bmap = new BitmapImage(new Uri(System.IO.Path.Combine(ProjectManager.saveDir, value)));
-			Bmap.DecodePixelWidth = 256;
+			Bmap.BeginInit();
+			Bmap.UriSource = new Uri(System.IO.Path.Combine(ProjectManager.saveDir, value));
+			
+			Bmap.CacheOption = BitmapCacheOption.OnLoad;
+			Bmap.EndInit();
 			return Bmap;
 		}
 		public static BitmapImage CreateBitmapFromImage(string value)
 		{
-			var Bitmap = new BitmapImage(new Uri(System.IO.Path.Combine(ProjectManager.saveDir, value)));
+			var Bitmap = new BitmapImage();
+			Bitmap.BeginInit();
+			Bitmap.UriSource = new Uri(System.IO.Path.Combine(ProjectManager.saveDir, value));
 			Bitmap.DecodePixelWidth = 256;
+			Bitmap.CacheOption = BitmapCacheOption.OnLoad;
+			Bitmap.EndInit();
 			return Bitmap;
 		}
 		#endregion

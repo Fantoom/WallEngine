@@ -52,7 +52,6 @@ namespace WPEngine.WPEngineClasses
 			{
 				Loop = true,
 				Volume = 0,
-				
 			};
 			player.EnableYouTubeDl();
 			isPlaying = player.IsPlaying;
@@ -82,6 +81,7 @@ namespace WPEngine.WPEngineClasses
 			}
 			instance = this;
 			Console.WriteLine(player.Speed);
+			
 		}
 
 		public void CreateProject(string filePath, string previewPath, string title , string uri = "")
@@ -130,6 +130,7 @@ namespace WPEngine.WPEngineClasses
 			isPlaying = true;
 
 		}
+		
 		public void Resume()
 		{
 			player.Resume();
@@ -152,6 +153,12 @@ namespace WPEngine.WPEngineClasses
 		{
 			return instance;
 		}
+		public void ResetPlayer()
+		{
+		   player.Stop();
+			player.Load("Assets/black-square.jpg");
+		}
+
 		public static bool CheckURL(string URL = "")
 		{
 			if (URL.Count() > 0 && Uri.IsWellFormedUriString(URL, UriKind.Absolute) && URL.Contains("http"))
@@ -160,10 +167,18 @@ namespace WPEngine.WPEngineClasses
 			}
 			return false;
 		}
-		public static BitmapImage CreateBitmapFromImage(string value)
+		public static BitmapImage CreateBitmapFromImage(string value, bool isBaseDir = true)
 		{
-			var Bitmap = new BitmapImage(new Uri(System.IO.Path.Combine(ProjectManager.baseDir, value)));
+			var dir = ProjectManager.baseDir;
+			if (!isBaseDir)
+				 dir = "";
+
+			var Bitmap = new BitmapImage();
+			Bitmap.BeginInit();
+			Bitmap.UriSource = new Uri(System.IO.Path.Combine(dir, value));
 			Bitmap.DecodePixelWidth = 256;
+			Bitmap.CacheOption = BitmapCacheOption.OnLoad;
+			Bitmap.EndInit();
 			return Bitmap;
 		}
 

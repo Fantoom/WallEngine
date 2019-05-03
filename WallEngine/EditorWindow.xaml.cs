@@ -74,9 +74,9 @@ namespace WallEngine
 			{
 				previewPath = Fdialog.FileName;
 				previewName = Path.GetFileNameWithoutExtension(Fdialog.FileName);
-				BitmapImage Bmap = new BitmapImage(new Uri(System.IO.Path.Combine(previewPath)));
-				Bmap.DecodePixelWidth = 256;
-				Preview.Source = Bmap;
+				//BitmapImage Bmap = new BitmapImage(new Uri(previewPath));
+				//Bmap.DecodePixelWidth = 256;
+				Preview.Source = Controller.CreateBitmapFromImage(previewPath,false);
 			}
 		}
 		private async void SetUri_Click(object sender, RoutedEventArgs e)

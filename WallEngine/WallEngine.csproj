@@ -208,6 +208,9 @@
     <Resource Include="bin\Debug\Assets\preview_local.jpg" />
     <Resource Include="bin\Debug\Assets\icon.ico" />
     <Resource Include="Images\icon.png" />
+    <Content Include="Assets\black-square.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
