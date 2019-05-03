@@ -22,6 +22,14 @@ Just download and unzip the folder anywhere you want
 
 Just press "Create new Project" button , select video or url , write Title, and select preview image (in your opinion) and press Add.
 
+
+
+##Changelog
+
+### [0.0.2] - 2019-05-04
+#### Fixed
+- Project delete functionality
+
 ## Known Issues
 Small optimization problem
 
