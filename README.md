@@ -20,7 +20,7 @@ Just download and unzip the folder anywhere you want
 ## Instructions
 ### Creating project
 
-Just press "Create Project" button , select video or url , write Title, and select preview image (in your opinion) and press Add.
+Just press "Create new Project" button , select video or url , write Title, and select preview image (in your opinion) and press Add.
 
 ## Known Issues
 Small optimization problem
@@ -30,7 +30,7 @@ Small optimization problem
 * [MaterialDesignThemes](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit) - UI design
 * [Wallpainter](https://github.com/Foohy/Wallpainter) - For placing window behind icons
 * [Mpv.NET](https://github.com/hudec117/Mpv.NET) - Video player
-* [Mpvlib](https://mpv.srsfckn.biz)(Dev build) - Dll library for Mpv.NET
+* [Mpvlib](https://mpv.srsfckn.biz) (Dev build) - Dll library for Mpv.NET
 
 ## Contributing
 
