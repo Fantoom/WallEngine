@@ -9,8 +9,8 @@ An Engine for Creating and Setting Animated wallpapers
 #### **Video https://www.youtube.com/watch?v=gEf1YLZnGW0**
 ![](preview.gif)
 
-##Prerequisites
- *.NET Framework 4.7
+## Prerequisites
+* .NET Framework 4.7
 ## Download
 
 You can download latest release from [Releases](https://github.com/Fantoom/WallEngine/releases "Releases") page
