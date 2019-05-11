@@ -32,6 +32,11 @@ Just press "Create new Project" button , select video or url , write Title, and 
 #### Fixed
 * Project delete functionality
 
+### [0.0.3] - 2019-05-11
+#### Added
+* Settings window
+* Autostart with windows
+
 ## Known Issues
 Small optimization problem
 
