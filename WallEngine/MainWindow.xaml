@@ -81,7 +81,8 @@
             </Grid>
             <Button Background="#F44336"  x:Name="Delete" Click="Delete_Click" FontSize="18" Content="Delete" Margin="30,0,31,68" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" BorderBrush="#FFF44336" />
         </Grid>
-        <Button  Click="EditorButton_Click" FontSize="14" Content="Create new project" HorizontalAlignment="Left" Margin="34,25,0,0" Width="154" Height="32" VerticalAlignment="Top"/>
+        <Button  Click="EditorButton_Click" Name="EditorButton" FontSize="14" Content="Create new project" HorizontalAlignment="Left" Margin="34,25,0,0" Width="154" Height="32" VerticalAlignment="Top"/>
+        <Button  Click="SettingsButton_Click"  Name="Settings" FontSize="14" Content="Settings" HorizontalAlignment="Left" Margin="202,25,0,0" Width="90" Height="32" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

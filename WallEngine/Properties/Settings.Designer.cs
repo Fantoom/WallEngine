@@ -50,12 +50,12 @@ namespace WallEngine.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool startMinimized {
+        public bool startInTry {
             get {
-                return ((bool)(this["startMinimized"]));
+                return ((bool)(this["startInTry"]));
             }
             set {
-                this["startMinimized"] = value;
+                this["startInTry"] = value;
             }
         }
     }

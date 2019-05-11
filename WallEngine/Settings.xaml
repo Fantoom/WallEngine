@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WallEngine"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="800">
+        Title="Settings" Height="510" Width="350">
     <Grid>
-        
+        <ScrollViewer HorizontalAlignment="Left" Height="479" VerticalAlignment="Top" Width="342">
+            <Grid>
+                <CheckBox   Content="AutoStart with Windows" Click="AutoStartChkbox_Click" x:Name="AutoStartChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Height="38" Width="264"/>
+                <CheckBox   Content="Start in try" Click="StartInTryChkbox_Click" Name="StartInTryChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,88,0,0" VerticalAlignment="Top" Height="38" Width="158"/>
+            </Grid>
+        </ScrollViewer>
+
+
     </Grid>
 </Window>

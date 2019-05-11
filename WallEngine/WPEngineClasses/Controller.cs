@@ -8,11 +8,16 @@ using Wallpainter;
 using Mpv.NET.Player;
 using System.IO;
 using System.Windows.Media.Imaging;
-
+using Microsoft.Win32;
+using WallEngine;
 namespace WPEngine.WPEngineClasses
 {
 	class Controller
 	{
+		private RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+		private WallEngine.Properties.Settings settings = WallEngine.Properties.Settings.Default;
+
 		private WallpaperManager Wmanager = new WallpaperManager();
 		public  int screenW, screenH;
 		private int x, y, w, h;
@@ -84,12 +89,34 @@ namespace WPEngine.WPEngineClasses
 			
 		}
 
+
 		public void CreateProject(string filePath, string previewPath, string title , string uri = "")
 		{
 			if (File.Exists(filePath) || Controller.CheckURL(uri))
 			{
 				PM.CreateProject(filePath, previewPath, title,uri);
 			}
+		}
+
+		public void SetAutoStart(bool state)
+		{
+			settings.autoStart = state;
+			settings.Save();
+			ManageAutostart();
+		}
+		public void SetStartInTry(bool state)
+		{
+			settings.startInTry = state;
+			settings.Save();
+		
+		}
+
+		private void ManageAutostart()
+		{
+			if(settings.autoStart)
+				rkApp.SetValue("WallEngine", Application.ExecutablePath + " -minimized");
+			else
+				rkApp.DeleteValue("WallEngine", false);
 		}
 
 		public void Delete(Project project)
@@ -181,6 +208,7 @@ namespace WPEngine.WPEngineClasses
 			Bitmap.EndInit();
 			return Bitmap;
 		}
+
 
 	}
 }

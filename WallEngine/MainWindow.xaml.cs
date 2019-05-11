@@ -29,6 +29,7 @@ namespace WallEngine
 	{
 		public IntPtr hWnd { get; private set; }
 		private Viewer viewer = new Viewer();
+
 		private Controller controller;
 		private ProjectManager PM = new ProjectManager();
 		public List<Project> projects = new List<Project>();
@@ -44,8 +45,13 @@ namespace WallEngine
 				System.Windows.MessageBox.Show("Already Running", "Already Running", MessageBoxButton.OK);
 				System.Diagnostics.Process.GetCurrentProcess().Kill();
 			}
+			
 			InitializeComponent();
 			InitNotifyIcon();
+			if (App.arguments.ContainsKey("minimized") || settings.startInTry)
+			{
+				this.Hide();
+			}
 			hWnd = viewer.Handle;
 			controller = new Controller(this, hWnd);
 			projects = PM.LoadProjects();
@@ -113,6 +119,12 @@ namespace WallEngine
 		{
 			EditorWindow editor = new EditorWindow();
 			editor.Show();
+		}
+
+		private void SettingsButton_Click(object sender, RoutedEventArgs e)
+		{
+		    Settings settingsView = new Settings();
+			settingsView.Show();
 		}
 
 		private void ThumbClick(object sender, RoutedEventArgs e)
@@ -238,8 +250,9 @@ namespace WallEngine
 
 
 
+
 		#endregion
 
-	
+		
 	}
 }

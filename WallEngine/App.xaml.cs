@@ -13,5 +13,19 @@ namespace WallEngine
 	/// </summary>
 	public partial class App : Application
 	{
+		public static Dictionary<string, string> arguments = new Dictionary<string, string>();
+
+		private void Init(object sender, StartupEventArgs e)
+		{
+			string[] args = Environment.GetCommandLineArgs();
+
+			for (int index = 1; index < args.Length; index += 2)
+			{
+				string arg = args[index].Replace("--", "").Replace("-","");
+				arguments.Add(arg, args[index + 1]);
+				Console.WriteLine(arg, args[index + 1]);
+			}
+		}
+		
 	}
 }
