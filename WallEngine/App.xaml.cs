@@ -19,11 +19,19 @@ namespace WallEngine
 		{
 			string[] args = Environment.GetCommandLineArgs();
 
-			for (int index = 1; index < args.Length; index += 2)
+			for (int index = 1; index < args.Length; index++)
 			{
-				string arg = args[index].Replace("--", "").Replace("-","");
+				if (args[index].Contains("--")) { 
+				string arg = args[index].Replace("--", "");
 				arguments.Add(arg, args[index + 1]);
-				Console.WriteLine(arg, args[index + 1]);
+				Console.WriteLine(arg + "   "  + args[index + 1]);
+				}
+				if (args[index].Contains("-"))
+				{
+					string arg = args[index].Replace("-", "");
+					arguments.Add(arg, "");
+					Console.WriteLine(arg);
+				}
 			}
 		}
 		
