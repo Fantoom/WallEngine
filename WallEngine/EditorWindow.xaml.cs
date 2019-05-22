@@ -132,6 +132,10 @@ namespace WallEngine
 			if (_noOfErrorsOnScreen < 1 && (fileName.Count() > 2 || Controller.CheckURL(URI))) { 
 			Save.IsEnabled =  true;
 			}
+			else
+			{
+		      Save.IsEnabled = false;
+			}
 			
 		}
 	}
