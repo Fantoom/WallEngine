@@ -3,16 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         xmlns:local="clr-namespace:WallEngine"
         mc:Ignorable="d"
-        Title="Settings" Height="510" Width="350">
+        Title="Settings" Height="510" Width="350"
+        >
     <Grid>
-        <ScrollViewer HorizontalAlignment="Left" Height="479" VerticalAlignment="Top" Width="342">
-            <Grid>
-                <CheckBox   Content="AutoStart with Windows" Click="AutoStartChkbox_Click" x:Name="AutoStartChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Height="38" Width="264"/>
-                <CheckBox   Content="Start in try" Click="StartInTryChkbox_Click" Name="StartInTryChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,88,0,0" VerticalAlignment="Top" Height="38" Width="158"/>
-            </Grid>
-        </ScrollViewer>
+        <dragablz:TabablzControl FixedHeaderCount="999999">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="General">
+                <ScrollViewer HorizontalAlignment="Left" Height="479" VerticalAlignment="Top" Width="342">
+                    <Grid>
+                        <CheckBox   Content="AutoStart with Windows" Click="AutoStartChkbox_Click" x:Name="AutoStartChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Height="38" Width="264"/>
+                        <CheckBox   Content="Start in try" Click="StartInTryChkbox_Click" Name="StartInTryChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Height="38" Width="158"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Performance">
+                <ScrollViewer HorizontalAlignment="Left" Height="479" VerticalAlignment="Top" Width="342">
+                    <Grid>
+                        <CheckBox   Content="Stop if other application maximized"  x:Name="StopIfMaximized"  FontSize="15" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Height="38" Width="264" IsEnabled="False"/>
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+        </dragablz:TabablzControl>
+        
 
 
     </Grid>

@@ -59,6 +59,11 @@ namespace WallEngine
 		}
 		private BitmapImage CreateBitmap(string value)
 		{
+			Bmap = Controller.CreateBitmapFromImage(System.IO.Path.Combine(ProjectManager.saveDir, value));
+			return Bmap;
+		}
+		/*private BitmapImage CreateBitmap(string value)
+		{
 			Bmap.BeginInit();
 			Bmap.UriSource = new Uri(System.IO.Path.Combine(ProjectManager.saveDir, value));
 			
@@ -75,7 +80,7 @@ namespace WallEngine
 			Bitmap.CacheOption = BitmapCacheOption.OnLoad;
 			Bitmap.EndInit();
 			return Bitmap;
-		}
+		}*/
 		#endregion
 
 	}

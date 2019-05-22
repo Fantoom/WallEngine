@@ -16,6 +16,8 @@ using WPEngine.WPEngineClasses;
 using System.IO;
 using System.Windows.Forms;
 using DialogController;
+using System.Globalization;
+
 namespace WallEngine
 {
 	/// <summary>
@@ -32,9 +34,12 @@ namespace WallEngine
 		private DialogManager dManager = new DialogManager();
 		private ProjectManager PM = new ProjectManager();
 		private Controller controller;
+		private int _noOfErrorsOnScreen = 0;
+		//private bool ValidateTest { get { return Title.} }
 		public EditorWindow()
 		{
 			InitializeComponent();
+			this.DataContext = this;
 			player = new MpvPlayer(VideoPlayer.Handle)
 			{
 				Loop = true,
@@ -61,8 +66,10 @@ namespace WallEngine
 				Console.WriteLine(fileName);
 				PathLabel.Content = filePath;
 				Title.Text = fileName;
+				Save.IsEnabled = true;
 				player.Load(filePath);
 				player.Resume();
+				
 			}
 		}
 
@@ -87,8 +94,10 @@ namespace WallEngine
 			filePath = "";
 			PathLabel.Content = URI;
 			Title.Text = ProjectManager.GenerateRandomID();
+			Save.IsEnabled = true;
 			player.Load(URI);
 			player.Resume();
+
 			}
 		}
 		private void Save_Click(object sender, RoutedEventArgs e)
@@ -113,6 +122,37 @@ namespace WallEngine
 			}
 		}
 
+		private void Title_Error(object sender, ValidationErrorEventArgs e)
+		{
+			if (e.Action == ValidationErrorEventAction.Added)
+				_noOfErrorsOnScreen++;
+			else
+				_noOfErrorsOnScreen--;
 
+			if (_noOfErrorsOnScreen < 1 && (fileName.Count() > 2 || Controller.CheckURL(URI))) { 
+			Save.IsEnabled =  true;
+			}
+			
+		}
 	}
+	public class TitleValidation : ValidationRule
+	{
+	
+		public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+		{
+			var str = value as string;
+			if (str.Count() < 1)
+			{
+				return new ValidationResult(false, "Please enter the title");
+			}
+			if (str.IndexOfAny(System.IO.Path.GetInvalidFileNameChars()) != -1)
+			{
+				Console.WriteLine("VALIDATION WORKED ********************************");
+				return new ValidationResult(false, "The title must not contain \\ / : ? * | \" < >");
+			}
+			return new ValidationResult(true, null);
+
+		}
+	}
+	
 }

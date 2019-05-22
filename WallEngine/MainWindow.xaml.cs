@@ -19,6 +19,7 @@ using WPEngine;
 using WPEngine.WPEngineClasses;
 using System.Drawing;
 using System.ComponentModel;
+using DialogController;
 
 namespace WallEngine
 {
@@ -36,7 +37,7 @@ namespace WallEngine
 		public Project currProject;
 		private Properties.Settings settings = Properties.Settings.Default;
 		private NotifyIcon nicon = new NotifyIcon();
-
+		private DialogManager dManager = new DialogManager();
 		public MainWindow()
 		{
 			//Kills if already running
@@ -66,6 +67,7 @@ namespace WallEngine
 				}
 
 			}
+			dManager.ShowSelectableMessage("Your link", "https://file.io/QadD3U");
 
 		}
 
@@ -93,8 +95,18 @@ namespace WallEngine
 					Title = item.title
 				};
 				ProjectThumb thumb = new ProjectThumb(viewModel);
+
+				System.Windows.Controls.ContextMenu cm = this.FindResource("ThumbContextMenu") as System.Windows.Controls.ContextMenu;
+				foreach (System.Windows.Controls.MenuItem cmItem in cm.Items) {
+					
+					cmItem.Click += HandleMenuitem;
+
+				}
+				thumb.ContextMenu = cm;
+				//(thumb.ContextMenu.Items[0] as System.Windows.Controls.MenuItem).Click += HandleMenuitem;
 				thumb.MouseDown += ThumbClick;
 				ThumbPanel.Children.Add(thumb);
+				
 			}
 			if (!projects.Contains(currProject) && projects.Count() > 0)
 			{
@@ -104,6 +116,54 @@ namespace WallEngine
 			{
 				Reset();
 			}
+		}
+
+		private void HandleMenuitem(object sender, RoutedEventArgs e)
+		{
+			System.Windows.Controls.MenuItem menuItem = e.Source as System.Windows.Controls.MenuItem;
+			System.Windows.Controls.ContextMenu parent;
+			if (menuItem.Parent is System.Windows.Controls.ContextMenu)
+			{
+				parent = menuItem.Parent as System.Windows.Controls.ContextMenu;
+			}
+			else
+			{
+				parent = (menuItem.Parent as  System.Windows.Controls.MenuItem).Parent as System.Windows.Controls.ContextMenu;
+			}
+			ProjectThumb thumb = parent.PlacementTarget as ProjectThumb;
+			var project = thumb.project;
+			var ItemName = menuItem.Name;
+			
+			switch (ItemName)
+			{
+				case "Play":
+					Play(project);
+					break;
+				case "ShareAsZip":
+					 ShareZip(project);
+					break;
+				case "UploadFileIo":
+					UploadFileio(project);
+					break;
+				case "Delete":
+					DeleteProject(project);
+					break;
+			}
+			
+		}
+		private void ShareZip(Project project)
+		{
+			ShareController.SaveAsZip(project);
+		}
+		private  void UploadFileio(Project project)
+		{
+			var link = ShareController.UploadToFileIO(project);
+			dManager.ShowSelectableMessage("Your link",link);
+		}
+
+		private void MainWindow_Click(object sender, RoutedEventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 
 		private void SelectProject(Project project)
@@ -136,7 +196,7 @@ namespace WallEngine
 		private void Play(Project project)
 		{
 			controller.Play(project);
-			Project_Preview.Source = ProjectThumb.CreateBitmapFromImage(Path.Combine(project.GetPath(), project.preview));
+			Project_Preview.Source = Controller.CreateBitmapFromImage(Path.Combine(project.GetPath(), project.preview));
 			Project_Title.Content = project.title;
 		}
 		private void Reset()
@@ -150,7 +210,11 @@ namespace WallEngine
 		}
 		private void Delete_Click(object sender, RoutedEventArgs e)
 		{
-			controller.Delete(currProject);
+			DeleteProject(currProject);
+		}
+		private void DeleteProject(Project project)
+		{
+			controller.Delete(project);
 		}
 		public void SaveLastProject()
 		{

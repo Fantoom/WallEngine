@@ -17,7 +17,11 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         
         >
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
+        
         <!--<Rectangle Name="VideoPlayer" Fill="Black" Stroke="Black"  Margin="213,60,20,32"/>-->
         <WindowsFormsHost Width="816" Height="459" Margin="213,60,20,32" Background="Black">
             <windowsForms:Panel x:Name="VideoPlayer" Click="VideoPlayer_Click"/>
@@ -35,14 +39,32 @@
         <Label Name="PathLabel" Content="Path"  FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="258,25,0,0"/>
         <Label Content="Preview" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17,25,0,0"/>
 
-        <TextBox Name="Title"
+        <TextBox Name="Title" Validation.Error="Title_Error"
             materialDesign:HintAssist.Hint="Enter Title" FontSize="18"
-            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,246,859,246" BorderBrush="#89000000" />
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,246,859,246" BorderBrush="#89000000" >
+            <TextBox.Text>
+                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <local:TitleValidation  ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button Name="SetFile"    Click="SetFile_Click" Content="Choose File" HorizontalAlignment="Left" Margin="10,338,0,0" Width="180" FontSize="15" Height="32" VerticalAlignment="Top"/>
         <Button Name="SetPreview" Click="SetPreview_Click" Content="Choose Preview" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
         <Button x:Name="SetUri" Click="SetUri_Click" Content="Set URL" HorizontalAlignment="Left" Margin="10,418,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
-        <Button Name="Save"       Click="Save_Click" Content="Add" HorizontalAlignment="Left" Margin="10,487,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
-        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="MainDialogHost" Margin="0,88,0,0">
+        <Button Name="Save" IsEnabled="False"     Click="Save_Click" Content="Add" HorizontalAlignment="Left" Margin="10,487,0,0" VerticalAlignment="Top" Width="180" FontSize="15">
+
+        </Button>
+        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="MainDialogHost" Margin="426,251,477,224" RenderTransformOrigin="0.5,0.5">
+            <materialDesign:DialogHost.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:DialogHost.RenderTransform>
             <Grid>
                 <!-- Window contents here -->
             </Grid>

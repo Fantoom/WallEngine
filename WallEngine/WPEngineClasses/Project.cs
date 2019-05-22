@@ -30,6 +30,14 @@ namespace WPEngine.WPEngineClasses
 		{
 			return Path.Combine(ProjectManager.saveDir, title);
 		}
+		public string GetFilePath()
+		{
+			return Path.Combine(ProjectManager.saveDir, title,file);
+		}
+		public string GetPreviewPath()
+		{
+			return Path.Combine(ProjectManager.saveDir, title, preview);
+		}
 
 		public static string ToJson(Project project)
 		{

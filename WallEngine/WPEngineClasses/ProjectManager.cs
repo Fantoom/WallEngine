@@ -13,15 +13,22 @@ namespace WPEngine.WPEngineClasses
 		public static string folderName = "MyProjects";
 		public static string baseDir;
 		public static string saveDir;
+		public static string temp;
+
 		List<Project> Projects = new List<Project>();
 
 		public ProjectManager()
 		{
 			baseDir = AppDomain.CurrentDomain.BaseDirectory;
 			saveDir = Path.Combine(baseDir, folderName);
+			temp = Path.Combine(baseDir, "temp");
 			if (!Directory.Exists(saveDir))
 			{
 				Directory.CreateDirectory(saveDir);
+			}
+			if (!Directory.Exists(temp))
+			{
+				Directory.CreateDirectory(temp);
 			}
 		}
 

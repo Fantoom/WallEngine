@@ -27,6 +27,7 @@ namespace WallEngine
 
 		private bool startInTry { get { return settings.startInTry; }  set { Controller.instance.SetStartInTry(value); } }
 		private bool autoStart  { get { return settings.autoStart;  }  set { Controller.instance.SetAutoStart(value); } }
+		private bool stopIfMaximized { get { return settings.stopIfMaximized; } set { Controller.instance.SetAutoStart(value); } }
 
 		public Settings()
 		{

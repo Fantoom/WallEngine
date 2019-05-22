@@ -163,6 +163,19 @@ namespace DialogController
 			MaterialDesignThemes.Wpf.DialogHost.Show(dialog, host);
 		}
 
+		public void ShowSelectableMessage(string Message, string SelectableText, [Optional] string DialogHost, [Optional] string AffirmativeButton)
+		{
+			string host = DialogHost ?? "MainDialogHost";
+			var viewModel = new SelectableMessageViewModel
+			{
+				Message = Message,
+				AffirmativeButtonText = AffirmativeButton ?? "OK",
+				Text = SelectableText
+			};
+			var dialog = new SelectableMessage(viewModel);
+			MaterialDesignThemes.Wpf.DialogHost.Show(dialog, host);
+		}
+
 		/// <summary>
 		/// Shows a dialog to show <see cref="Text"/>. An Async variant of showtext for getting bool return
 		/// </summary>

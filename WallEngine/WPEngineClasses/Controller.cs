@@ -26,6 +26,9 @@ namespace WPEngine.WPEngineClasses
 		private int volume;
 		public  int Volume { get => volume; set { volume = value; player.Volume = value; } }
 		private double speed;
+		private bool stopifMiximized;
+		public bool StopIfMaximized { get => settings.stopIfMaximized; set { settings.stopIfMaximized = value; stopifMiximized = value; } }
+
 		public double Speed
 		{
 			get => speed;
@@ -89,6 +92,10 @@ namespace WPEngine.WPEngineClasses
 			
 		}
 
+		private void LoadSettings()
+		{
+			stopifMiximized = settings.stopIfMaximized;
+		}
 
 		public void CreateProject(string filePath, string previewPath, string title , string uri = "")
 		{
@@ -194,6 +201,7 @@ namespace WPEngine.WPEngineClasses
 			}
 			return false;
 		}
+
 		public static BitmapImage CreateBitmapFromImage(string value, bool isBaseDir = true)
 		{
 			var dir = ProjectManager.baseDir;

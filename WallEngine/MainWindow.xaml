@@ -20,6 +20,15 @@
     <!--<Window.Effect>
         <DropShadowEffect Color="#FF0097FF" BlurRadius="30" Direction="-90" RenderingBias="Quality" ShadowDepth="4"/>
     </Window.Effect>-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ContextMenu.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80*" ></RowDefinition>
@@ -39,9 +48,11 @@
                         <Style TargetType="{x:Type local:ProjectThumb}">
                             <Setter Property="Margin" Value="10,10" />
                             <Setter Property="Padding" Value="0,0" />
+                            <!--<Setter Property="ContextMenu" Value="{StaticResource ThumbContextMenu}"/>-->
                         </Style>
+                        
                     </WrapPanel.Resources>
-
+                    
                     <!--<local:ProjectThumb HorizontalAlignment="Left"   VerticalAlignment="Top" />-->
 
                 </WrapPanel>
@@ -49,7 +60,9 @@
         </Grid>
         <Grid Grid.RowSpan ="2"   Grid.Column="1">
 
-            <Button  Name="OK" Click="OK_Click" FontSize="18" Content="OK" Margin="30,0,31,22" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Background="#FF00C853" BorderBrush="#FF00C853"/>
+            <Button  Name="OK" Click="OK_Click" FontSize="18" Content="OK" Margin="30,0,31,22" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Background="#FF00C853" BorderBrush="#FF00C853">
+               
+            </Button>
             <Grid Margin="0,394,0,0" Height="111" VerticalAlignment="Top">
                 <Label FontSize="18" Content="Volume" Margin="104,27,105,0" Height="30" VerticalAlignment="Top"/>
 
@@ -83,6 +96,18 @@
         </Grid>
         <Button  Click="EditorButton_Click" Name="EditorButton" FontSize="14" Content="Create new project" HorizontalAlignment="Left" Margin="34,25,0,0" Width="154" Height="32" VerticalAlignment="Top"/>
         <Button  Click="SettingsButton_Click"  Name="Settings" FontSize="14" Content="Settings" HorizontalAlignment="Left" Margin="202,25,0,0" Width="90" Height="32" VerticalAlignment="Top"/>
-
+        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="MainDialogHost" Margin="426,251,477,224" RenderTransformOrigin="0.5,0.5">
+            <materialDesign:DialogHost.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:DialogHost.RenderTransform>
+            <Grid>
+                <!-- Window contents here -->
+            </Grid>
+        </materialDesign:DialogHost>
     </Grid>
 </Window>
