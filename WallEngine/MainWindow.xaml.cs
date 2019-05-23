@@ -38,6 +38,7 @@ namespace WallEngine
 		private Properties.Settings settings = Properties.Settings.Default;
 		private NotifyIcon nicon = new NotifyIcon();
 		private DialogManager dManager = new DialogManager();
+		
 		public MainWindow()
 		{
 			//Kills if already running
@@ -67,11 +68,12 @@ namespace WallEngine
 				}
 
 			}
-			
 
+			controller.SetVolume(settings.Volume);
+			VolumeSlider.Value = settings.Volume;
 		}
 
-
+	
 
 		public void OpenViewer()
 		{
@@ -259,6 +261,7 @@ namespace WallEngine
 			var slider = sender as Slider;
 			controller.SetVolume((int)slider.Value);
 		}
+
 		private void SpeedSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
 			var slider = sender as Slider;

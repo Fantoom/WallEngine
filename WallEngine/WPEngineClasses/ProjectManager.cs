@@ -32,7 +32,7 @@ namespace WPEngine.WPEngineClasses
 			}
 		}
 
-		public CreatReturn CreateProject(string filePath, string previewPath, string title, string uri)
+		public CreatReturn CreateProject(string filePath, string previewPath, string title, string uri, string audio = "")
 		{
 			CreatReturn msg = new CreatReturn { Path = "", Message = "", isSuccess = true };
 			if (filePath.Count() < 1 || !Controller.CheckURL(uri))
@@ -52,6 +52,9 @@ namespace WPEngine.WPEngineClasses
 			string projectJsonPath = Path.Combine(projectPath, "project.json");
 			string fileName = Path.GetFileName(filePath);
 			string fileDestinationPath = Path.Combine(projectPath, fileName);
+			string audioName = Path.GetFileName(audio);
+			string audioDestinationPath = Path.Combine(projectPath, audioName);
+
 			string URI = "";
 			string previewName = Path.GetFileName(previewPath);
 			string previewDestinationPath = Path.Combine(projectPath, "preview.jpg");
@@ -66,9 +69,12 @@ namespace WPEngine.WPEngineClasses
 				if(filePath.Count() > 1) {
 				File.Copy(filePath, fileDestinationPath);
 				}
-
+				if (audio.Count() > 1)
+				{
+					File.Copy(audio, audioDestinationPath);
+				}
 				File.Copy(previewPath, previewDestinationPath);
-				project = new Project(fileName, "preview.jpg", title, URI);
+				project = new Project(fileName, "preview.jpg", title, URI, audioName);
 				string json = JsonConvert.SerializeObject(project, Formatting.Indented);
 
 				using (FileStream fs = File.Create(projectJsonPath))

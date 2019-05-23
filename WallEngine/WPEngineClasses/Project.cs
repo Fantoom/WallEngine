@@ -12,18 +12,20 @@ namespace WPEngine.WPEngineClasses
 		public string file;
 		public string preview;
 		public string title;
+		public string audio;
 		public string URI;
 
 		public Project()
 		{
 
 		}
-		public Project(string file, string preview,string title, string uri = "")
+		public Project(string file, string preview,string title, string uri = "", string audio = "")
 		{
 			this.file = file;
 			this.preview = preview;
 			this.title = title;
 			this.URI = uri;
+			this.audio = audio;
 		}
 
 		public string GetPath()
@@ -32,11 +34,15 @@ namespace WPEngine.WPEngineClasses
 		}
 		public string GetFilePath()
 		{
-			return Path.Combine(ProjectManager.saveDir, title,file);
+			return Path.Combine(ProjectManager.saveDir, title, file);
 		}
 		public string GetPreviewPath()
 		{
 			return Path.Combine(ProjectManager.saveDir, title, preview);
+		}
+		public string GetAudioPath()
+		{
+			return Path.Combine(ProjectManager.saveDir, title, audio);
 		}
 
 		public static string ToJson(Project project)

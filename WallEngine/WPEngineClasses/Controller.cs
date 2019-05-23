@@ -88,8 +88,6 @@ namespace WPEngine.WPEngineClasses
 
 			}
 			instance = this;
-			Console.WriteLine(player.Speed);
-			
 		}
 
 		private void LoadSettings()
@@ -97,11 +95,11 @@ namespace WPEngine.WPEngineClasses
 			stopifMiximized = settings.stopIfMaximized;
 		}
 
-		public void CreateProject(string filePath, string previewPath, string title , string uri = "")
+		public void CreateProject(string filePath, string previewPath, string title , string uri = "", string audio = "")
 		{
 			if (File.Exists(filePath) || Controller.CheckURL(uri))
 			{
-				PM.CreateProject(filePath, previewPath, title,uri);
+				PM.CreateProject(filePath, previewPath, title,uri,audio);
 			}
 		}
 
@@ -146,7 +144,8 @@ namespace WPEngine.WPEngineClasses
 		public void Play(Project project)
 		{
 				
-			var file = Path.Combine(project.GetPath(), project.file);
+			var file = project.GetFilePath();
+			var audio = project.GetAudioPath();
 			var uri = project.URI;
 			if (!CheckURL(uri)) { 
 			if (!File.Exists(file))
@@ -158,7 +157,12 @@ namespace WPEngine.WPEngineClasses
 			{
 				file = uri;
 			}
+			
 			player.Load(file,true);
+			if (File.Exists(audio))
+			{
+				player.AddAudio(audio);
+			}
 			player.Resume();
 			view.SaveLastProject();
 			isPlaying = true;
@@ -178,6 +182,7 @@ namespace WPEngine.WPEngineClasses
 		public void SetVolume(int value)
 		{
 			player.Volume = value;
+			settings.Volume = value;
 		}
 		public void SetSpeed(double value)
 		{

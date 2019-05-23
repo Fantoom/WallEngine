@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WallEngine"
         mc:Ignorable="d"
-        Title="EditorWindow" Width="1067"  Height="588" MinWidth="1067"  MinHeight="588"
+        Title="EditorWindow" Width="1090"  Height="612" MinWidth="1090"  MinHeight="612"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:windowsForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -21,27 +21,24 @@
 
     </Window.Resources>
     <Grid>
-        
+
         <!--<Rectangle Name="VideoPlayer" Fill="Black" Stroke="Black"  Margin="213,60,20,32"/>-->
-        <WindowsFormsHost Width="816" Height="459" Margin="213,60,20,32" Background="Black">
-            <windowsForms:Panel x:Name="VideoPlayer" Click="VideoPlayer_Click"/>
+        <materialDesign:PackIcon Panel.ZIndex="1" Name="PlayIcon" Visibility="Hidden" Foreground="White"  Kind="Play" Height="Auto" Width="Auto" Margin="511,172,331,168" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <WindowsFormsHost Panel.ZIndex="0" Width="848" Height="477" Margin="218,66,17,38" Background="Black">
+            <windowsForms:Panel  x:Name="VideoPlayer" Click="VideoPlayer_Click"/>
         </WindowsFormsHost>
 
-        <Border Height="180" Width="180" BorderThickness="2" BorderBrush="Black" Margin="15,63,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image Source="Images/preview_local.jpg" Name="Preview" HorizontalAlignment="Left" Height="180" Width="180" VerticalAlignment="Top"  Margin="-2,-2,-2,0"/>
+        <Border Height="180" Width="180" BorderThickness="2" BorderBrush="Black" Margin="10,63,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="Images/preview_local.jpg" Name="Preview" HorizontalAlignment="Left" Height="176" Width="176" VerticalAlignment="Top"/>
         </Border>
-        <Viewbox Name="PlayIcon" Visibility="Hidden" Width="220" Height="220"  Margin="515,181,314,150">
-            <Canvas Width="24" Height="24">
-                <Path Data="M8,5.14V19.14L19,12.14L8,5.14Z" Fill="White" />
-            </Canvas>
-        </Viewbox>
+
         <Label Content="File:" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,25,0,0"/>
         <Label Name="PathLabel" Content="Path"  FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="258,25,0,0"/>
         <Label Content="Preview" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17,25,0,0"/>
 
         <TextBox Name="Title" Validation.Error="Title_Error"
             materialDesign:HintAssist.Hint="Enter Title" FontSize="18"
-            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,246,859,246" BorderBrush="#89000000" >
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10,251,0,0" BorderBrush="#89000000" Height="65" VerticalAlignment="Top" HorizontalAlignment="Left" Width="203" >
             <TextBox.Text>
                 <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                     <Binding.ValidationRules>
@@ -50,13 +47,13 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Button Name="SetFile"    Click="SetFile_Click" Content="Choose File" HorizontalAlignment="Left" Margin="10,338,0,0" Width="180" FontSize="15" Height="32" VerticalAlignment="Top"/>
-        <Button Name="SetPreview" Click="SetPreview_Click" Content="Choose Preview" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
-        <Button x:Name="SetUri" Click="SetUri_Click" Content="Set URL" HorizontalAlignment="Left" Margin="10,418,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
-        <Button Name="Save" IsEnabled="False"     Click="Save_Click" Content="Add" HorizontalAlignment="Left" Margin="10,487,0,0" VerticalAlignment="Top" Width="180" FontSize="15">
+        <Button Name="SetFile"    Click="SetFile_Click" Content="Choose File" HorizontalAlignment="Left" Margin="10,341,0,0" Width="180" FontSize="15" Height="32" VerticalAlignment="Top"/>
+        <Button Name="SetPreview" Click="SetPreview_Click" Content="Choose Preview" HorizontalAlignment="Left" Margin="10,381,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
+        <Button x:Name="SetUri" Click="SetUri_Click" Content="Set URL" HorizontalAlignment="Left" Margin="10,421,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
+        <Button x:Name="AddAudio" Click="AddAudio_Click" Content="Add Audio" HorizontalAlignment="Left" Margin="10,461,0,0" VerticalAlignment="Top" Width="180" FontSize="15"/>
 
-        </Button>
-        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="MainDialogHost" Margin="426,251,477,224" RenderTransformOrigin="0.5,0.5">
+        <Button Name="Save" IsEnabled="False"     Click="Save_Click" Content="Add" HorizontalAlignment="Left" Margin="10,0,0,35" Width="180" FontSize="15" Height="32" VerticalAlignment="Bottom"/>
+        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="EditorDialogHost" Margin="426,261,477,214" RenderTransformOrigin="0.5,0.5">
             <materialDesign:DialogHost.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1"/>

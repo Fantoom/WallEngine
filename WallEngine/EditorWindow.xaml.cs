@@ -26,10 +26,12 @@ namespace WallEngine
 	public partial class EditorWindow : Window
 	{
 		private MpvPlayer player;
-		private string fileName;
-		private string filePath;
-		private string previewName;
+		private string fileName = "";
+		private string filePath = "";
+		private string previewName = "";
 		private string previewPath = "Assets/preview_local.jpg";
+		private string audioName = "";
+		private string audioPath = "";
 		private string URI = "";
 		private DialogManager dManager = new DialogManager();
 		private ProjectManager PM = new ProjectManager();
@@ -50,13 +52,13 @@ namespace WallEngine
 
 		private void SaveProject()
 		{
-			controller.CreateProject(filePath, previewPath, Title.Text, URI);
+			controller.CreateProject(filePath, previewPath, Title.Text, URI,audioPath);
 		}
 
 		private void SetFile_Click(object sender, RoutedEventArgs e)
 		{
 			OpenFileDialog Fdialog = new OpenFileDialog();
-			Fdialog.Filter = "Video Files (*.flv *.gif *.avi *.wmv *.amv *.mp4)|*.flv;*.gif;*.avi;*.wmv;*.amv;*.mp4;" + "|All Files|*.*";
+			Fdialog.Filter = "Video Files (*.mp4 *.avi *.flv *.gif *.wmv *.amv )|*.mp4;*.avi;*.flv;*.gif;*.wmv;*.amv;" + "|All Files|*.*";
 			if (Fdialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
 				SetUri.IsEnabled = false;	
@@ -86,19 +88,40 @@ namespace WallEngine
 				Preview.Source = Controller.CreateBitmapFromImage(previewPath,false);
 			}
 		}
+		private void AddAudio_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog Fdialog = new OpenFileDialog();
+			Fdialog.Filter = "Audio Files (*.mp3 *.wav) | *.mp3; *.wav;" + "|All Files|*.*";
+			if (Fdialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				audioPath = Fdialog.FileName;
+				audioName = Path.GetFileNameWithoutExtension(Fdialog.FileName);
+				Console.WriteLine(audioPath);
+				Console.WriteLine(audioName);
+
+				player.AddAudio(audioPath);
+				player.Volume = 100;
+
+			}
+		}
 		private async void SetUri_Click(object sender, RoutedEventArgs e)
 		{
-			URI = await dManager.InputDialog("Enter Video's URL adress");
+			URI = await dManager.InputDialog("Enter Video's URL adress","EditorDialogHost");
+			string name = ProjectManager.GenerateRandomID().ToString();
+			//await Dispatcher.BeginInvoke(new Action(() => name = ProjectManager.GenerateRandomID().ToString()));
+
 			if (Controller.CheckURL(URI))
 			{
 			filePath = "";
 			PathLabel.Content = URI;
-			Title.Text = ProjectManager.GenerateRandomID();
+			Title.Text = name;
+			SetFile.IsEnabled = false;
 			Save.IsEnabled = true;
 			player.Load(URI);
 			player.Resume();
 
 			}
+
 		}
 		private void Save_Click(object sender, RoutedEventArgs e)
 		{
@@ -138,6 +161,8 @@ namespace WallEngine
 			}
 			
 		}
+
+
 	}
 	public class TitleValidation : ValidationRule
 	{
