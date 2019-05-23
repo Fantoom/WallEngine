@@ -183,6 +183,7 @@ namespace WPEngine.WPEngineClasses
 		{
 			player.Volume = value;
 			settings.Volume = value;
+			settings.Save();
 		}
 		public void SetSpeed(double value)
 		{
