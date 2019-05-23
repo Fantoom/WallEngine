@@ -103,7 +103,10 @@ namespace WPEngine.WPEngineClasses
 		{
 
 			Projects.Remove(project);
+			if(File.Exists(Path.Combine(project.GetPath(), "project.json")))
+			{
 			File.Delete(Path.Combine(project.GetPath(), "project.json"));
+			}
 			Controller.getInstance().UpdateView();
 			if (Directory.Exists(project.GetPath()))
 			{

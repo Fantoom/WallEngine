@@ -42,8 +42,9 @@ namespace WPEngine.WPEngineClasses
 			string folder = project.GetPath();
 			/*Thread thread = new Thread(() => { CreateSample(path, null, folder); });
 			thread.Start();*/
-			CreateSample(path, null, folder);
-			if(ShowFolder)
+			//	CreateSample(path, null, folder);
+			ZipWithFastZip(path, folder);
+			if (ShowFolder)
 				Process.Start(new ProcessStartInfo { FileName = "explorer", Arguments = $"/n,/select,{path}" });
 		}
 
@@ -202,6 +203,17 @@ namespace WPEngine.WPEngineClasses
 			}
 
 		}
+
+		public static void ZipWithFastZip(string outPathname, string folderName)
+		{
+			FastZip fastZip = new FastZip();
+
+			bool recurse = true;  // Include all files by recursing through the directory structure
+			string filter = null; // Dont filter any files at all
+			fastZip.CreateZip(outPathname, folderName, recurse, filter);
+		}
+
+
 	}
 	class FileIoResponseModel
 	{
