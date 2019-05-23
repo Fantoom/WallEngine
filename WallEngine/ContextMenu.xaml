@@ -10,6 +10,10 @@
             </MenuItem.Icon>
         </MenuItem>
         <MenuItem Header="Share" InputGestureText="Ctrl+D">
+            <MenuItem.Icon>
+                <materialDesign:PackIcon Kind="ShareVariant" />
+            </MenuItem.Icon>
+           
             <MenuItem Name="ShareAsZip" Header="Save as zip">
                 <MenuItem.Icon>
                     <materialDesign:PackIcon Kind="ZipBox" />

@@ -67,7 +67,7 @@ namespace WallEngine
 				}
 
 			}
-			dManager.ShowSelectableMessage("Your link", "https://file.io/QadD3U");
+			
 
 		}
 
@@ -151,20 +151,52 @@ namespace WallEngine
 			}
 			
 		}
-		private void ShareZip(Project project)
+		private async void ShareZip(Project project)
 		{
-			ShareController.SaveAsZip(project);
+			/*System.Windows.Forms.SaveFileDialog Fdialog = new System.Windows.Forms.SaveFileDialog();
+			Fdialog.Filter = "Zip (*.zip)|*.zip";
+			Fdialog.DefaultExt = "zip";
+			Fdialog.AddExtension = true;
+			Fdialog.FileName = project.title;
+			string path = null;
+			if (Fdialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				path = Fdialog.FileName;
+			}
+			await Task.Run(() => ShareController.SaveAsZipAsync(project, path));
+			dManager.ShowText("Saved");*/
+			Controller.SaveAsZip(project);
 		}
 		private  void UploadFileio(Project project)
 		{
-			var link = ShareController.UploadToFileIO(project);
+			var link = Controller.UploadFileio(project);
 			dManager.ShowSelectableMessage("Your link",link);
 		}
 
-		private void MainWindow_Click(object sender, RoutedEventArgs e)
+		private void SaveAsZipBtn_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+			Controller.SaveAsZip(currProject);
+
 		}
+
+		private void UploadFileIoBtn_Click(object sender, RoutedEventArgs e)
+		{
+			var link = Controller.UploadFileio(currProject);
+			dManager.ShowSelectableMessage("Your link", link);
+		}
+
+		private void OpenCM(object sender, RoutedEventArgs e)
+		{
+			(sender as System.Windows.Controls.Control).ContextMenu.IsOpen = true;
+		}
+
+		private void UnZipProjectBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Controller.UnzipProject();
+		}
+
+		
+
 
 		private void SelectProject(Project project)
 		{
@@ -311,8 +343,6 @@ namespace WallEngine
 			this.WindowState = WindowState.Normal;
 			this.ShowInTaskbar = true;
 		}
-
-
 
 
 		#endregion

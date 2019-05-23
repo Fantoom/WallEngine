@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WallEngine"
         xmlns:ge="clr-namespace:SourceChord.GridExtra;assembly=GridExtra.Wpf"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="658" Width="914" MinHeight="658" MinWidth="914" 
         xmlns:XamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
@@ -26,7 +27,7 @@
                 <ResourceDictionary Source="ContextMenu.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
+
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -50,9 +51,9 @@
                             <Setter Property="Padding" Value="0,0" />
                             <!--<Setter Property="ContextMenu" Value="{StaticResource ThumbContextMenu}"/>-->
                         </Style>
-                        
+
                     </WrapPanel.Resources>
-                    
+
                     <!--<local:ProjectThumb HorizontalAlignment="Left"   VerticalAlignment="Top" />-->
 
                 </WrapPanel>
@@ -60,16 +61,14 @@
         </Grid>
         <Grid Grid.RowSpan ="2"   Grid.Column="1">
 
-            <Button  Name="OK" Click="OK_Click" FontSize="18" Content="OK" Margin="30,0,31,22" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Background="#FF00C853" BorderBrush="#FF00C853">
-               
-            </Button>
-            <Grid Margin="0,394,0,0" Height="111" VerticalAlignment="Top">
-                <Label FontSize="18" Content="Volume" Margin="104,27,105,0" Height="30" VerticalAlignment="Top"/>
+
+            <Grid Margin="0,367,0,0" Height="71" VerticalAlignment="Top">
+                <Label FontSize="18" Content="Volume" Margin="104,8,105,33"/>
 
                 <Slider Minimum="0"
                     Maximum="100"
                     Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    Value="0" Margin="38,48,0,11" 
+                    Value="0" Margin="38,8,0,11" 
                     Name="VolumeSlider"
                     ValueChanged="VolumeSlider_ValueChanged"
                     IsSnapToTickEnabled="True"
@@ -77,34 +76,54 @@
                     />
             </Grid>
             <Image  Name="Project_Preview" Source="Images/preview_local.jpg" HorizontalAlignment="Left" Height="210" Margin="30,27,0,0" VerticalAlignment="Top" Width="210"/>
-            <Label  Name="Project_Title" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Label" HorizontalAlignment="Left" Margin="30,260,0,0" VerticalAlignment="Top" FontSize="18" Height="76" Width="210"/>
-            <Grid Margin="0,307,0,0" Height="111" VerticalAlignment="Top">
-                <Label FontSize="18" Content="Speed" Margin="104,27,105,0" Height="30" VerticalAlignment="Top"/>
+            <Label  Name="Project_Title" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Label" HorizontalAlignment="Left" Margin="30,254,0,0" VerticalAlignment="Top" FontSize="18" Height="46" Width="210"/>
+            <Grid Margin="0,305,0,0" Height="62" VerticalAlignment="Top">
+
+                <Label FontSize="18" Content="Speed" Margin="104,-1,105,33"/>
 
                 <Slider 
                     Minimum="2"
                     Maximum="100"
                     Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    Value="100" Margin="38,48,0,11" 
+                    Value="100" Margin="38,-1,0,11" 
                     x:Name="SpeedSlider"
                     ValueChanged="SpeedSlider_ValueChanged"
                     IsSnapToTickEnabled="True"
                     TickFrequency="1" HorizontalAlignment="Left" Width="202"
                     />
             </Grid>
-            <Button Background="#F44336"  x:Name="Delete" Click="Delete_Click" FontSize="18" Content="Delete" Margin="30,0,31,68" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" BorderBrush="#FFF44336" />
+            <Button Name="OpenShareCM" Click="OpenCM" Content="Share" FontSize="18" Margin="30,0,31,112" Height="36" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Background="#03A9F4"  BorderBrush="#03A9F4">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="ShareAsZipBtn" Click="SaveAsZipBtn_Click" Header="Save as zip">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="ZipBox" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem x:Name="UploadFileIoBtn" Click="UploadFileIoBtn_Click" Header="Upload to File.io">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="FileUpload" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+
+            </Button>
+            <!--<Menu Margin="30,464,31,114">
+                <MenuItem Header="Share" HorizontalAlignment="Center" Width="151" Height="49">
+                   
+                </MenuItem>
+            </Menu>-->
+            <Button Background="#F44336"  x:Name="Delete" Click="Delete_Click" FontSize="18" Content="Delete" Margin="30,0,31,66" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" BorderBrush="#FFF44336" />
+            <Button  Name="OK" Click="OK_Click" FontSize="18" Content="OK" Margin="30,0,31,20" Height="36" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" />
+
         </Grid>
         <Button  Click="EditorButton_Click" Name="EditorButton" FontSize="14" Content="Create new project" HorizontalAlignment="Left" Margin="34,25,0,0" Width="154" Height="32" VerticalAlignment="Top"/>
         <Button  Click="SettingsButton_Click"  Name="Settings" FontSize="14" Content="Settings" HorizontalAlignment="Left" Margin="202,25,0,0" Width="90" Height="32" VerticalAlignment="Top"/>
+        <Button  Click="UnZipProjectBtn_Click"  x:Name="UnZipProjectBtn" FontSize="14" Content="Unzip Project" HorizontalAlignment="Left" Margin="307,25,0,0" Width="119" Height="32" VerticalAlignment="Top"/>
+
         <materialDesign:DialogHost CloseOnClickAway="True" Identifier="MainDialogHost" Margin="426,251,477,224" RenderTransformOrigin="0.5,0.5">
-            <materialDesign:DialogHost.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </materialDesign:DialogHost.RenderTransform>
+
             <Grid>
                 <!-- Window contents here -->
             </Grid>

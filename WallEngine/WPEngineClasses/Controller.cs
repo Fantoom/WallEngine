@@ -190,7 +190,7 @@ namespace WPEngine.WPEngineClasses
 		public void ResetPlayer()
 		{
 		   player.Stop();
-			player.Load("Assets/black-square.jpg");
+		   player.Load("Assets/black-square.jpg");
 		}
 
 		public static bool CheckURL(string URL = "")
@@ -202,6 +202,19 @@ namespace WPEngine.WPEngineClasses
 			return false;
 		}
 
+		public static void SaveAsZip(Project project)
+		{
+			ShareController.SaveAsZip(project);
+		}
+		public static string UploadFileio(Project project)
+		{
+			return ShareController.UploadToFileIO(project);
+		}
+		public static void UnzipProject()
+		{
+			ShareController.UnZipProject();
+			Controller.getInstance().UpdateView();
+		}
 		public static BitmapImage CreateBitmapFromImage(string value, bool isBaseDir = true)
 		{
 			var dir = ProjectManager.baseDir;

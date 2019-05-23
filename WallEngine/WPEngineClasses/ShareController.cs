@@ -9,14 +9,20 @@ using ICSharpCode.SharpZipLib.Core;
 using System.Windows.Forms;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Threading;
+using System.Diagnostics;
 
 namespace WPEngine.WPEngineClasses
 {
 	class ShareController
 	{
-
-		public static void SaveAsZip(Project project, string path = null)
+		
+		public static void SaveAsZip(Project project, string path = null , bool ShowFolder = true)
 		{
+			if (project == null)
+			{
+				return;
+			}
 			if (path == null)
 			{
 				SaveFileDialog Fdialog = new SaveFileDialog();
@@ -29,8 +35,28 @@ namespace WPEngine.WPEngineClasses
 					path = Fdialog.FileName;
 				}
 			}
+			if (path == null)
+			{
+				return;
+			}
 			string folder = project.GetPath();
+			/*Thread thread = new Thread(() => { CreateSample(path, null, folder); });
+			thread.Start();*/
 			CreateSample(path, null, folder);
+			if(ShowFolder)
+				Process.Start(new ProcessStartInfo { FileName = "explorer", Arguments = $"/n,/select,{path}" });
+		}
+
+		public static async Task SaveAsZipAsync(Project project, string path = null, bool ShowFolder = true)
+		{
+			if (path == null)
+			{
+				return;
+			}
+			string folder = project.GetPath();
+			await Task.Run(() => CreateSample(path, null, folder));
+			if (ShowFolder)
+				Process.Start(new ProcessStartInfo { FileName = "explorer", Arguments = $"/n,/select,{path}" });
 		}
 
 		public static string UploadToFileIO(Project project)
@@ -45,7 +71,7 @@ namespace WPEngine.WPEngineClasses
 			var title = project.title;
 			var savePath = Path.Combine(ProjectManager.temp, title);
 			savePath += ".zip";
-			SaveAsZip(project, savePath);
+			SaveAsZip(project, savePath,false);
 			using (var httpClient = new HttpClient())
 			{
 				using (var request = new HttpRequestMessage(new HttpMethod("POST"), "https://file.io/?expires=1y"))
@@ -67,11 +93,46 @@ namespace WPEngine.WPEngineClasses
 			}
 		}
 
+		public static void UnZipProject(string zipFileName = null)
+		{
+			bool isValidProject = false;
+			if (zipFileName == null)
+			{
+				OpenFileDialog Fdialog = new OpenFileDialog();
+				Fdialog.Filter = "Zip (*.zip)|*.zip";
+				if (Fdialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				{
+					zipFileName = Fdialog.FileName;
+				}
+			}
+			if (zipFileName == null)
+			{
+				return;
+			}
+			using (ZipFile zf = new ZipFile(zipFileName))
+			{
+				foreach (ZipEntry ze in zf)
+				{
+					if (ze.Name.Contains("project.json"))
+						isValidProject = true;
+				}
+			}
+			if (!isValidProject)
+			{
+				return;
+			}
+			FastZip fastZip = new FastZip();
+			string fileFilter = null;
+			// Will always overwrite if target filenames already exist
+			fastZip.ExtractZip(zipFileName, ProjectManager.saveDir, fileFilter);
+		}
+
+
 		// Compresses the files in the nominated folder, and creates a zip file on disk named as outPathname.
 		//
 		public static void CreateSample(string outPathname, string password, string folderName)
 		{
-			if (outPathname.Count() < 2)
+			if (outPathname == null || outPathname.Count() < 2)
 				return;
 
 			if (!outPathname.EndsWith(".zip"))
@@ -87,7 +148,7 @@ namespace WPEngine.WPEngineClasses
 			// This setting will strip the leading part of the folder path in the entries, to
 			// make the entries relative to the starting folder.
 			// To include the full path for each entry up to the drive root, assign folderOffset = 0.
-			int folderOffset = folderName.Length + (folderName.EndsWith("\\") ? 0 : 1);
+			int folderOffset = folderName.Length + (folderName.EndsWith("\\") ? 0 : 1) - new DirectoryInfo(folderName).Name.Count() - 1;
 
 			CompressFolder(folderName, zipStream, folderOffset);
 

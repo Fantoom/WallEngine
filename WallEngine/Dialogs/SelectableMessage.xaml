@@ -19,7 +19,7 @@
                  BorderThickness="0"
                  IsReadOnly="True"
                  TextWrapping="Wrap"
-                 FontSize="14px"
+                 FontSize="16"
                  />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="8">
