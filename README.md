@@ -28,14 +28,25 @@ Just press "Create new Project" button , select video or url , write Title, and 
 
 ## Changelog
 
-### [0.0.2] - 2019-05-04
-#### Fixed
-* Project delete functionality
+>### [[0.0.2]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.2b) - 2019-05-04
+>#### Fixed
+>* Project delete functionality
+>
+>### [[0.0.3]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.3b) - 2019-05-11
+>#### Added
+>* Settings window
+>* Autostart with windows
+>
+>### [[0.0.4]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.4b) - 2019-05-23
+>#### Added
+>* Validation in Editor
+>* "Add audio" button in the editor. Now you can add music to the project.
+>* Project sharing system. Now you can share your projects (zip, unzip, upload to File.io).
+>* Context-menu (right-click on the project thumb in the menu to open it).
+>#### Fixed
+>* Some bugs that were causing crashes. 
 
-### [0.0.3] - 2019-05-11
-#### Added
-* Settings window
-* Autostart with windows
+
 
 ## Known Issues
 Small optimization problem
