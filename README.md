@@ -45,7 +45,10 @@ Just press "Create new Project" button , select video or url , write Title, and 
 >* Context-menu (right-click on the project thumb in the menu to open it).
 >#### Fixed
 >* Some bugs that were causing crashes. 
-
+>
+>### [[0.0.5]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.5b) - 2019-06-09
+>#### Fixed
+>* Major bug fixes.
 
 
 ## Known Issues
