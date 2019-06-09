@@ -14,7 +14,7 @@ namespace WPEngine.WPEngineClasses
 		public string title;
 		public string audio;
 		public string URI;
-
+		public string directory;
 		public Project()
 		{
 
@@ -30,6 +30,23 @@ namespace WPEngine.WPEngineClasses
 
 		public string GetPath()
 		{
+			return directory;
+		}
+		public string GetFilePath()
+		{
+			return Path.Combine(directory, file);
+		}
+		public string GetPreviewPath()
+		{
+			return Path.Combine(directory, preview);
+		}
+		public string GetAudioPath()
+		{
+			return Path.Combine(directory, audio);
+		}
+
+		/*public string GetPath()
+		{
 			return Path.Combine(ProjectManager.saveDir, title);
 		}
 		public string GetFilePath()
@@ -43,7 +60,7 @@ namespace WPEngine.WPEngineClasses
 		public string GetAudioPath()
 		{
 			return Path.Combine(ProjectManager.saveDir, title, audio);
-		}
+		}*/
 
 		public static string ToJson(Project project)
 		{

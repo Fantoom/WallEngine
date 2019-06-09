@@ -92,7 +92,7 @@ namespace WallEngine
 			{
 				ProjectThumbViewModel viewModel = new ProjectThumbViewModel
 				{
-					Image = Path.Combine(item.GetPath(), item.preview),
+					Image = item.GetPreviewPath(),
 					project = item,
 					Title = item.title
 				};
@@ -202,7 +202,7 @@ namespace WallEngine
 
 		private void SelectProject(Project project)
 		{
-			if (projects.Contains(project))
+			if (projects.Contains(project) && currProject != project)
 			{
 				currProject = project;
 				Play(currProject);

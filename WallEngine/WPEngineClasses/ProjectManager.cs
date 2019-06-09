@@ -122,7 +122,9 @@ namespace WPEngine.WPEngineClasses
 			string[] filePaths = Directory.GetFiles(saveDir, "project.json", SearchOption.AllDirectories);
 			foreach (var path in filePaths)
 			{
-				projects.Add(JsonConvert.DeserializeObject<Project>(File.ReadAllText(path)));
+				Project project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(path));
+				project.directory = Path.GetDirectoryName(path);
+				projects.Add(project);
 			}
 			Projects = projects;
 			return projects;

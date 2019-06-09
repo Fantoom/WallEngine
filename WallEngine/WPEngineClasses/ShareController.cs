@@ -96,7 +96,9 @@ namespace WPEngine.WPEngineClasses
 
 		public static void UnZipProject(string zipFileName = null)
 		{
+			bool createFolder;
 			bool isValidProject = false;
+			string dir = ProjectManager.saveDir;
 			if (zipFileName == null)
 			{
 				OpenFileDialog Fdialog = new OpenFileDialog();
@@ -117,15 +119,25 @@ namespace WPEngine.WPEngineClasses
 					if (ze.Name.Contains("project.json"))
 						isValidProject = true;
 				}
+				createFolder = !zf[0].IsDirectory;
 			}
 			if (!isValidProject)
 			{
 				return;
 			}
+			
 			FastZip fastZip = new FastZip();
 			string fileFilter = null;
 			// Will always overwrite if target filenames already exist
-			fastZip.ExtractZip(zipFileName, ProjectManager.saveDir, fileFilter);
+			if (createFolder)
+			{
+				dir = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFileName));
+			}
+			if (Directory.Exists(dir))
+			{
+				dir += ProjectManager.GenerateRandomID();
+			}
+			fastZip.ExtractZip(zipFileName, dir, fileFilter);
 		}
 
 
