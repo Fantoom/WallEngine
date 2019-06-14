@@ -49,7 +49,10 @@ Just press "Create new Project" button , select video or url , write Title, and 
 >### [[0.0.5]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.5b) - 2019-06-09
 >#### Fixed
 >* Major bug fixes.
-
+>
+>### [[0.0.6]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.6b) - 2019-06-15
+>#### Added
+>* Auto-updater
 
 ## Known Issues
 Small optimization problem
