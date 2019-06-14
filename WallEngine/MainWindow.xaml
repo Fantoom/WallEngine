@@ -76,7 +76,7 @@
                     />
             </Grid>
             <Image  Name="Project_Preview" Source="Images/preview_local.jpg" HorizontalAlignment="Left" Height="210" Margin="30,27,0,0" VerticalAlignment="Top" Width="210"/>
-            <Label  Name="Project_Title" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Label" HorizontalAlignment="Left" Margin="30,254,0,0" VerticalAlignment="Top" FontSize="18" Height="46" Width="210"/>
+            <Label  Name="Project_Title" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Title" HorizontalAlignment="Left" Margin="30,254,0,0" VerticalAlignment="Top" FontSize="18" Height="46" Width="210"/>
             <Grid Margin="0,305,0,0" Height="62" VerticalAlignment="Top">
 
                 <Label FontSize="18" Content="Speed" Margin="104,-1,105,33"/>

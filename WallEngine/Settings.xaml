@@ -6,7 +6,7 @@
         xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         xmlns:local="clr-namespace:WallEngine"
         mc:Ignorable="d"
-        Title="Settings" Height="510" Width="350"
+        Title="Settings" Height="510" Width="350" MinHeight="510" MinWidth="350"
         >
     <Grid>
         <dragablz:TabablzControl FixedHeaderCount="999999">
@@ -14,24 +14,46 @@
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>
             <TabItem Header="General">
-                <ScrollViewer HorizontalAlignment="Left" Height="479" VerticalAlignment="Top" Width="342">
+                <ScrollViewer>
                     <Grid>
                         <CheckBox   Content="AutoStart with Windows" Click="AutoStartChkbox_Click" x:Name="AutoStartChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Height="38" Width="264"/>
                         <CheckBox   Content="Start in try" Click="StartInTryChkbox_Click" Name="StartInTryChkbox"  FontSize="15" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top" Height="38" Width="158"/>
+                        <ComboBox   IsEnabled="False"    Name="primaryPaletteComboBox" SelectionChanged="primaryPaletteComboBox_SelectedIndexChanged" HorizontalAlignment="Left" Margin="40,116,0,0" VerticalAlignment="Top" Width="120"/>
+
                     </Grid>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Performance">
-                <ScrollViewer HorizontalAlignment="Left" Height="479" VerticalAlignment="Top" Width="342">
+                <ScrollViewer>
                     <Grid>
                         <CheckBox   Content="Stop if other application maximized"  x:Name="StopIfMaximized"  FontSize="15" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Height="38" Width="264" IsEnabled="False"/>
 
                     </Grid>
                 </ScrollViewer>
             </TabItem>
+            <TabItem Header="About">
+                <ScrollViewer>
+                    <Grid>
+                        
+                        <Label  Content="{Binding Path=Version}" ContentStringFormat="Build v{0}" HorizontalAlignment="Left" Margin="10,443,0,10" Width="125"/>
+                        <Label  Content="Github" FontSize="13" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
+                        <Label  HorizontalAlignment="Left" FontSize="13" Margin="70,20,0,0" VerticalAlignment="Top">
+                            <Hyperlink NavigateUri="https://github.com/Fantoom/WallEngine" RequestNavigate="Hyperlink_RequestNavigate">
+                                https://github.com/Fantoom/WallEngine
+                            </Hyperlink>
+                        </Label>
+                        <Label  Content="Youtube" FontSize="13" HorizontalAlignment="Left" Margin="20,45,0,0" VerticalAlignment="Top"/>
+                        <Label  HorizontalAlignment="Left" FontSize="13" Margin="70,45,0,0" VerticalAlignment="Top">
+                            <Hyperlink NavigateUri="http://bit.ly/Phanto_m" RequestNavigate="Hyperlink_RequestNavigate">
+                                http://bit.ly/Phanto_m
+                            </Hyperlink>
+                        </Label>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
 
         </dragablz:TabablzControl>
-        
+
 
 
     </Grid>

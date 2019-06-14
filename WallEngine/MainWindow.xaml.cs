@@ -1,25 +1,15 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using WPEngine;
 using WPEngine.WPEngineClasses;
 using System.Drawing;
 using System.ComponentModel;
 using DialogController;
+
 
 namespace WallEngine
 {
@@ -38,7 +28,8 @@ namespace WallEngine
 		private Properties.Settings settings = Properties.Settings.Default;
 		private NotifyIcon nicon = new NotifyIcon();
 		private DialogManager dManager = new DialogManager();
-		
+		private UpdateManager updateManager = new UpdateManager();
+
 		public MainWindow()
 		{
 			//Kills if already running
@@ -47,7 +38,9 @@ namespace WallEngine
 				System.Windows.MessageBox.Show("Already Running", "Already Running", MessageBoxButton.OK);
 				System.Diagnostics.Process.GetCurrentProcess().Kill();
 			}
-			
+
+			updateManager.CheckForUpdate();
+
 			InitializeComponent();
 			InitNotifyIcon();
 			if (App.arguments.ContainsKey("minimized") || settings.startInTry)
