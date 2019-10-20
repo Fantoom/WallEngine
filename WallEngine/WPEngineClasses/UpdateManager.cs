@@ -17,7 +17,17 @@ namespace WPEngine.WPEngineClasses
 
 		public async void CheckForUpdate()
 		{
-			var check = await _updateManager.CheckForUpdatesAsync();
+			Onova.Models.CheckForUpdatesResult check;
+
+			try
+			{
+				check = await _updateManager.CheckForUpdatesAsync();
+
+			}
+			catch (Exception)
+			{
+				return;
+			}
 
 			// If there are none, notify user and return
 			if (!check.CanUpdate)

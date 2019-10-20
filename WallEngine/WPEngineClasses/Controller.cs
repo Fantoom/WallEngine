@@ -61,6 +61,8 @@ namespace WPEngine.WPEngineClasses
 				Loop = true,
 				Volume = 0,
 			};
+			player.LoadConfig(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"lib\mpv.conf"));
+
 			player.EnableYouTubeDl();
 			isPlaying = player.IsPlaying;
 
