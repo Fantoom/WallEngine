@@ -53,9 +53,12 @@ Just press "Create new Project" button , select video or url , write Title, and 
 >### [[0.0.6]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.6b) - 2019-06-15
 >#### Added
 >* Auto-updater
-
-## Known Issues
-Small optimization problem
+>
+>### [[0.0.7]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.7b) - 2019-10-20
+>#### Added
+>* mpv.conf. Now you can edit player configurations from lib\mpv.conf. look https://mpv.io/manual/master/#configuration-files for >additional information 
+>#### Fixed
+>* The optimization problems.
 
 ## Built With
 
