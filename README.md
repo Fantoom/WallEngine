@@ -35,7 +35,7 @@ Just press "Create new Project" button , select video or url , write Title, and 
 >### [[0.0.3]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.3b) - 2019-05-11
 >#### Added
 >* Settings window
->* Autostart with windows
+>* Autostart with Windows
 >
 >### [[0.0.4]](https://github.com/Fantoom/WallEngine/releases/tag/v0.0.4b) - 2019-05-23
 >#### Added
